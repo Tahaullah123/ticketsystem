@@ -8,8 +8,8 @@ app.secret_key = "hemmelig_nok_for_skole"
 # ---------- DATABASE ----------
 def get_db():
     return mysql.connector.connect(
-        host="localhost",
-        user="dbbruker",
+        host="taha",
+        user="tahaullah",
         password="passord",
         database="ticketsystem"
     )
