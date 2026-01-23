@@ -62,6 +62,32 @@ def ticket():
 
     return render_template("ticket.html")
 
+# ---------- REGISTER ----------
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        hashed_password = generate_password_hash(password)
+
+        db = get_db()
+        cursor = db.cursor()
+
+        try:
+            cursor.execute(
+                "INSERT INTO users (username, password) VALUES (%s, %s)",
+                (username, hashed_password)
+            )
+            db.commit()
+            db.close()
+            return redirect("/")
+        except:
+            db.close()
+            return "Brukernavn finnes allerede"
+
+    return render_template("register.html")
+
 # ---------- LOGOUT ----------
 @app.route("/logout")
 def logout():
