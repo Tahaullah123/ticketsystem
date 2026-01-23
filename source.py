@@ -10,7 +10,7 @@ def get_db():
     return mysql.connector.connect(
         host="taha",
         user="tahaullah",
-        password="passord",
+        password="123",
         database="ticketsystem"
     )
 
